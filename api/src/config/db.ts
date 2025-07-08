@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import chalk from "chalk";
-import { config } from "./config";
+import { config } from "../shared/env";
 
 export const connectDB = async () => {
   try {

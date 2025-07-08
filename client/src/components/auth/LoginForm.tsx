@@ -14,9 +14,13 @@ import { LoginUserDTO } from "@/types";
 import { login } from "@/services";
 import { handleAxiosError } from "@/utils/helpers/error.handler";
 import { loginValidator } from "@/utils/validations/auth.validator";
+import { useUserStore } from "@/stores/user.store";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const setUser = useUserStore((state) => state.setUser);
+    const router = useRouter();
 
     const formik = useFormik<LoginUserDTO>({
         initialValues: {
@@ -27,8 +31,11 @@ const LoginForm = () => {
         onSubmit: async (values, { setSubmitting }) => {
             try {
                 const res = await login(values);
+                setUser(res.data);
                 toast.success(res.message || "Login successful");
+                router.push("/home");
             } catch (error) {
+                console.log(error);
                 toast.error(handleAxiosError(error));
             } finally {
                 setSubmitting(false);

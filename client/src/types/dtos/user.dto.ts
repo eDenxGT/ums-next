@@ -1,3 +1,10 @@
+export interface UserDTO {
+  userId: string;
+  name: string;
+  email: string;
+  role: "admin" | "user";
+}
+
 export interface RegisterUserDTO {
   name: string;
   email: string;
@@ -9,9 +16,3 @@ export interface LoginUserDTO {
   password: string;
 }
 
-export interface UserResponseDTO {
-  userId: string;
-  name: string;
-  email: string;
-  role: "admin" | "user";
-}

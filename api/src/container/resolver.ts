@@ -1,7 +1,10 @@
 import { container } from "tsyringe";
 
-import { Container } from "./index";
+import { DependencyInjection } from "./index";
+
+import { AuthController } from "../controllers/auth.controller";
 
 // Registering all registries using a single class
-Container.registerAll();
+DependencyInjection.registerAll();
 
+export const authController = container.resolve(AuthController);

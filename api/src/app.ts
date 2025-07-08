@@ -1,14 +1,16 @@
 import "reflect-metadata";
+import "./container/resolver";
+
 import express from "express";
 import dotenvx from "@dotenvx/dotenvx";
 import chalk from "chalk";
 import cors from "cors";
 
-import "./container/resolver";
-import { config } from "./shared/config";
-import { connectDB } from "./shared/db";
+import { config } from "./shared/env";
+import { connectDB } from "./config/db";
 import authRoute from "./routes/auth.route";
 import userRoute from "./routes/user.route";
+import { errorHandler } from "./middlewares/error.handler";
 
 dotenvx.config();
 
@@ -31,6 +33,8 @@ connectDB();
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/pvt", userRoute);
+
+app.use(errorHandler);
 
 app.listen(config.server.PORT, () => {
   console.log(

@@ -8,4 +8,8 @@ export const config = {
   client: {
     URL: process.env.CLIENT_URL || "http://localhost:3000",
   },
+  jwt: {
+    ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET || "access_token_secret",
+    REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET || "refresh_token_secret",
+  },
 };

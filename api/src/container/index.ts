@@ -1,9 +1,9 @@
 import { RepositoryRegistry } from "./registries/repository.registry";
 import { ServiceRegistry } from "./registries/service.registry";
 
-export class Container {
+export class DependencyInjection {
   static registerAll(): void {
-    RepositoryRegistry.register();
     ServiceRegistry.register();
+    RepositoryRegistry.register();
   }
 }

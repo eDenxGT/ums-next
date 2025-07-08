@@ -1,10 +1,15 @@
 import {
   LoginUserDTO,
   RegisterUserDTO,
-  UserResponseDTO,
-} from "../../shared/dtos/user.dtos";
+} from "../../shared/dtos/input/user-auth.dto";
+import { UserResponseDTO } from "../../shared/dtos/output/user-response.dto";
 
-export interface IAuthServiceInterface {
-  register: (user: RegisterUserDTO) => Promise<UserResponseDTO>;
-  login: (user: LoginUserDTO) => Promise<UserResponseDTO>;
+export interface IAuthService {
+  register: (user: RegisterUserDTO) => Promise<void>;
+  login: (
+    user: LoginUserDTO
+  ) => Promise<{
+    user: UserResponseDTO;
+    tokens: { accessToken: string; refreshToken: string };
+  }>;
 }

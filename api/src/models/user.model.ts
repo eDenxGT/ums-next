@@ -28,3 +28,5 @@ export const UserSchema = new mongoose.Schema<UserEntity>(
   },
   { timestamps: true }
 );
+
+export const UserModel = mongoose.model<UserEntity>("User", UserSchema);
